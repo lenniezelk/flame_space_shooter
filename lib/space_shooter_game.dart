@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_rive/flame_rive.dart';
+import 'package:flame_space_shooter/bg.dart';
 import 'package:flame_space_shooter/constants.dart';
 import 'package:flame_space_shooter/enemy.dart';
 import 'package:flame_space_shooter/game_over.dart';
@@ -26,6 +27,7 @@ class SpaceShooterGame extends FlameGame
   late final Artboard playerProjectileArtboard;
   late final Artboard enemyProjectileArtboard;
   late final Artboard enemyArtboard;
+  late final Artboard bgArtboard;
 
   @override
   Future<void> onLoad() async {
@@ -39,6 +41,7 @@ class SpaceShooterGame extends FlameGame
         artboardName: "enemy_projectile");
     enemyArtboard =
         await loadArtboard(spaceShooterAssetFile, artboardName: "enemy");
+    bgArtboard = await loadArtboard(spaceShooterAssetFile, artboardName: "bg");
 
     player = Player(playerArtboard);
     lifeText = TextComponent(
@@ -54,6 +57,7 @@ class SpaceShooterGame extends FlameGame
 
     _enemyCooloff.start();
 
+    add(Bg(bgArtboard));
     add(player);
     add(lifeText);
     add(scoreText);
