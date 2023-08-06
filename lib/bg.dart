@@ -27,6 +27,6 @@ class Bg extends RiveComponent with HasGameRef<SpaceShooterGame> {
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    size = Vector2(size.x, size.y);
+    this.size = size;
   }
 }
